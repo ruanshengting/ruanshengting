@@ -1,0 +1,76 @@
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title>
+      3背景重复与尺寸定制
+    </title>
+  </head>
+  <body>
+    <style>
+      article {
+        color: rebeccapurple;
+        border: 10px dashed #23324b;
+        overflow: auto;
+        background-image: url(test.jpg);
+        background-repeat: no-repeat;
+        background-attachment: local;
+        background-position: bottom right;
+        /*background-size: 100% 100%; 宽度 高度都是100%*/
+        background-size: cover; /* background-size:cover;  保证容器被background*/
+        /*background-size: contain;*图片能被完全显示/
+        /*
+          background-position: 50% 50%;
+        */
+        /*background-clip: padding-box;  背景会覆盖到padding的地方
+         background-clip: content-box;  背景不会覆盖padding
+        */
+      }
+      div {
+        height: 300px;
+      }
+    </style>
+    <article>
+      <div>hello world</div>
+    </article>
+
+    <script>
+      //  let [x, y] = [1, 2]
+      //  console.log('🚀 ~ file: learn解构.html ~ line 71 ~ x, y', //x, y)
+      // 如果变量名与属性名不一致，必须写成下面这样。
+      let obj = { first: 'hello', last: 'world' }
+      let { first: f, last: l } = obj
+      console.log('🚀 ~ file: learn解构.html ~ line 75 ~', f, l)
+      let { foo: baz } = { foo: 'aaa', bar: 'bbb' }
+      console.log('🚀 ~ file: learn解构.html ~ line 78 ~ foo: baz ', baz)
+      //与数组一样，解构也可以用于嵌套结构的对象。
+      let obj1 = {
+        p: ['Hello', { y: 'World' }],
+      }
+      let {
+        p,
+        p: [x, { y }],
+      } = obj1
+      console.log(p, x, y)
+      const node = {
+        loc: {
+          start: {
+            line: 1,
+            column: 5,
+          },
+        },
+      }
+
+      let {
+        loc,
+        loc: { start },
+        loc: {
+          start: { line },
+        },
+      } = node
+      console.log(loc, start, line)
+      /*
+      上面代码有三次解构赋值，分别是对loc、start、line三个属性的解构赋值。注意，最后一次对line属性的解构赋值之中，只有line是变量，loc和start都是模式，不是变量。
+      */
+    </script>
+  </body>
+</html>
